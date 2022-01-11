@@ -1,3 +1,4 @@
+import 'package:audioplayers/src/audio_cache.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class MyHomePage extends StatelessWidget {
   int _counter = 0;
 
   void _incrementCounter() {
-    FlameAudio.play('attack1.wav');
+    FlameAudio.play('sounds/attack1.wav');
     // setState(() {
     _counter++;
     // });
@@ -30,6 +31,12 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // FlameAudio.loop('music/Burp.mp3');
+    AudioCache audio = FlameAudio.audioCache;
+    // FlameAudio.bgm.clearAll();
+    audio.clearAll().then((e) {});
+    FlameAudio.bgm.initialize();
+    FlameAudio.bgm.play('music/Choose_a_File.mp3');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Demo Home Page'),
